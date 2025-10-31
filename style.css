@@ -53,7 +53,6 @@ body {
     display: flex;
     justify-content: space-between;
     transform: translateY(-200px);
-    animation: translateYFlag 1.5s 2s forwards;
 }
 @keyframes translateYFlag{
     to{
@@ -804,6 +803,36 @@ body {
 #birthday-section.show .title .happy span,
 #birthday-section.show .title .birthday span {
   animation: txtTranslateY 0.6s var(--t) ease-in-out forwards;
+}
+
+/* 🎉 Restore Flag Swing Animation */
+#birthday-section.show .flag__birthday {
+  animation: translateYFlag 1.5s 2s forwards ease-in-out;
+}
+
+@keyframes translateYFlag {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 🎈 Add gentle waving motion for flags after they drop */
+#birthday-section.show .flag__birthday {
+  animation:
+    translateYFlag 1.5s 2s forwards ease-in-out,
+    swingFlag 3s 3.5s infinite ease-in-out;
+}
+
+@keyframes swingFlag {
+  0%, 100% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
 }
 
 /* Delay slightly more so date appears after hat drop */
