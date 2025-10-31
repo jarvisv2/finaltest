@@ -158,93 +158,86 @@
     });
 
     // --- PAGE 2: Setup for floating hearts & countdown timer ---
-    function page2init() {
-      // Hearts background
-      const heartsContainer = document.getElementById('bg-hearts');
-      const heartCount = 20;
-      heartsContainer.innerHTML = ''; // Prevent duplicate hearts on re-entry
-      for (let i = 0; i < heartCount; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'absolute floating-heart opacity-70';
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.top = Math.random() * 100 + '%';
-        heart.style.setProperty('--duration', (3 + Math.random() * 3) + 's');
-        heart.style.setProperty('--delay', Math.random() * 2 + 's');
-        heart.style.setProperty('--random-x', (Math.random() * 20 - 10) + 'px');
-        heart.style.setProperty('--random-rot', (Math.random() * 10 - 5) + 'deg');
-        const icon = document.createElement('i');
-        icon.setAttribute('data-lucide', 'heart');
-        const size = 4 + (i % 4);
-        icon.className = `w-${size} h-${size} icon-fill`;
-        if (i % 3 === 0) icon.classList.add('text-pink-300','fill-pink-100');
-        else if (i % 3 === 1) icon.classList.add('text-pink-400','fill-pink-200');
-        else icon.classList.add('text-purple-300','fill-purple-100');
-        heart.appendChild(icon);
-        heartsContainer.appendChild(heart);
-      }
-      lucide.createIcons();
+function page2init() {
+  // Hearts background
+  const heartsContainer = document.getElementById('bg-hearts');
+  const heartCount = 20;
+  heartsContainer.innerHTML = '';
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'absolute floating-heart opacity-70';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.top = Math.random() * 100 + '%';
+    heart.style.setProperty('--duration', (3 + Math.random() * 3) + 's');
+    heart.style.setProperty('--delay', Math.random() * 2 + 's');
+    heart.style.setProperty('--random-x', (Math.random() * 20 - 10) + 'px');
+    heart.style.setProperty('--random-rot', (Math.random() * 10 - 5) + 'deg');
+    const icon = document.createElement('i');
+    icon.setAttribute('data-lucide', 'heart');
+    const size = 4 + (i % 4);
+    icon.className = `w-${size} h-${size} icon-fill`;
+    if (i % 3 === 0) icon.classList.add('text-pink-300','fill-pink-100');
+    else if (i % 3 === 1) icon.classList.add('text-pink-400','fill-pink-200');
+    else icon.classList.add('text-purple-300','fill-purple-100');
+    heart.appendChild(icon);
+    heartsContainer.appendChild(heart);
+  }
+  lucide.createIcons();
 
-      // Countdown logic
-      let totalSeconds = 5;
-      const daysEl = document.getElementById('days-value');
-      const hoursEl = document.getElementById('hours-value');
-      const minutesEl = document.getElementById('minutes-value');
-      const secondsEl = document.getElementById('seconds-value');
-      const cardsEl = document.getElementById('cards');
+  // Countdown logic
+  let totalSeconds = 5;
+  const daysEl = document.getElementById('days-value');
+  const hoursEl = document.getElementById('hours-value');
+  const minutesEl = document.getElementById('minutes-value');
+  const secondsEl = document.getElementById('seconds-value');
+  const cardsEl = document.getElementById('cards');
 
-      function renderDHMS(total) {
-        const days = Math.floor(total / 86400);
-        const hours = Math.floor((total % 86400) / 3600);
-        const minutes = Math.floor((total % 3600) / 60);
-        const seconds = total % 60;
-        daysEl.textContent = days;
-        hoursEl.textContent = hours;
-        minutesEl.textContent = minutes;
-        secondsEl.textContent = seconds;
-      }
+  function renderDHMS(total) {
+    const days = Math.floor(total / 86400);
+    const hours = Math.floor((total % 86400) / 3600);
+    const minutes = Math.floor((total % 3600) / 60);
+    const seconds = total % 60;
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
+  }
 
-      function showSurpriseButton() {
-        cardsEl.innerHTML = '<button id="surprise-btn" class="mt-2 bg-pink-500 text-white font-semibold py-3 px-5 rounded-2xl hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-300">🎉 Surprise! The wait is over! 🎁</button>';
-        document.getElementById('surprise-btn').addEventListener('click', function() {
-          // If you want to load a third section, handle here, else redirect as needed
-          // Example of hiding both pages (otherwise redirect or reveal next surprise)
-          // document.getElementById('page2').style.display='none';
-          // alert('Show your birthday page here!');
-          document.getElementById('page2').style.display = 'none';
+  function showSurpriseButton() {
+    cardsEl.innerHTML =
+      '<button id="surprise-btn" class="mt-2 bg-pink-500 text-white font-semibold py-3 px-5 rounded-2xl hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-300">🎉 Surprise! The wait is over! 🎁</button>';
+    document.getElementById('surprise-btn').addEventListener('click', function () {
+      document.getElementById('page2').style.display = 'none';
 
-const bs = document.getElementById('birthday-section');
-// reveal block and trigger CSS animation (use .show class to apply overrides above)
-bs.style.display = 'block';
+      const bs = document.getElementById('birthday-section');
+      bs.style.display = 'block';
+      // Force a reflow to restart CSS animations
+      void bs.offsetWidth;
+      bs.classList.remove('show');  // reset if it was already there
+      void bs.offsetWidth;
+      bs.classList.add('show');     // now triggers .show animations cleanly
 
-// force reflow so CSS animation restarts
-void bs.offsetWidth;
+      // Wait until after hat finishes (≈ 10.5 s) to start typing
+      if (typeof startDateTyping === 'function') startDateTyping(10500);
+    });
+      }   // 👈 ADD THIS LINE to close showSurpriseButton()
 
-// add class to start reveal overrides
-bs.classList.add('show');
 
-// start the date typing (small delay to allow CSS reveal)
-if (typeof startDateTyping === 'function') {
-    startDateTyping(500); // start typing after 0.5s
+
+  // Countdown tick
+  renderDHMS(totalSeconds);
+  const timer = setInterval(() => {
+    totalSeconds -= 1;
+    if (totalSeconds <= 0) {
+      clearInterval(timer);
+      renderDHMS(0);
+      showSurpriseButton();
+    } else {
+      renderDHMS(totalSeconds);
+    }
+  }, 1000);
 }
 
-// if you also want the letter box assets to be ready earlier, you can optionally
-// call any initialization here (not required if user will click the letter button)
-
-        });
-      }
-
-      renderDHMS(totalSeconds);
-      const timer = setInterval(() => {
-        totalSeconds -= 1;
-        if (totalSeconds <= 0) {
-          clearInterval(timer);
-          renderDHMS(0);
-          showSurpriseButton();
-        } else {
-          renderDHMS(totalSeconds);
-        }
-      }, 1000);
-    }
     // Allow manual init for page2 (also triggers after emoji page switch)
     window.page2init = page2init;
 
@@ -472,7 +465,7 @@ if (typeof startDateTyping === 'function') {
                     <span style="--t: 6.4s;">y</span>
                 </h1>
                 <div class="hat">
-                    <img src="./images/hat.png" class="hat" alt="">
+                    <img src="./images/hat.png" class="hat-img" alt="" width="130">
                 </div>
             </div>
             <div class="date__of__birth">
@@ -630,21 +623,27 @@ if (typeof startDateTyping === 'function') {
     let date__of__birth = document.querySelector(".date__of__birth span");
     let text__letter = document.querySelector(".text__letter p");
     // Replace the old setTimeout with a function you can call when the birthday section is shown
-function startDateTyping(delay = 0){
+function startDateTyping(delay=0){
+    currentIndex = 0;
+    date__of__birth.textContent = "";
     setTimeout(function(){
-        timeDatetxt = setInterval(function(){
-            if(currentIndex < charArrDate.length){
-                date__of__birth.textContent += charArrDate[currentIndex];
-                currentIndex++;
-            } else {
-                let i = document.createElement("i");
-                i.className = "fa-solid fa-star";
-                document.querySelector(".date__of__birth").prepend(i);
-                document.querySelector(".date__of__birth").appendChild(i.cloneNode(true));
-                clearInterval(timeDatetxt);
-            }
-        }, 100);
-    }, delay);
+    const dateBox = document.querySelector(".date__of__birth");
+    dateBox.style.opacity = "1";
+    dateBox.style.visibility = "visible";
+    dateBox.style.zIndex = "5";
+    timeDatetxt = setInterval(function(){
+        if(currentIndex < charArrDate.length){
+            date__of__birth.textContent += charArrDate[currentIndex];
+            currentIndex++;
+        } else {
+            let i = document.createElement("i");
+            i.className = "fa-solid fa-star";
+            dateBox.prepend(i);
+            dateBox.appendChild(i.cloneNode(true));
+            clearInterval(timeDatetxt);
+        }
+    }, 100);
+}, 7000);
 }
 
 
