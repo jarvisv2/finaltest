@@ -841,15 +841,37 @@ body {
   animation: topHat 2.8s 8.2s forwards ease-in-out;  /* delay matches live */
 }
 
-@media screen and (max-width: 658px) {
+/* ✅ Correct Mobile Hat Position (for all phone sizes) */
+@media (max-width: 658px) {
   #birthday-section .title .hat-img {
     position: absolute;
-    right: 48px;      /* aligns above the 'y' in Birthday */
-    top: -165px;      /* balanced height, not too low */
-    width: 95px;      /* slightly larger for better proportion */
-    transform: rotate(-38deg);
+    left: 62%;
+    top: -150px;
+    width: 100px;
+    transform: translateX(-50%) rotate(-38deg);
+    transform-origin: 50% 65%;
     z-index: 2;
     pointer-events: none;
+  }
+}
+
+@media (max-width: 420px) {
+  #birthday-section .title .hat-img {
+    left: 66%;
+    top: -135px;
+    width: 92px;
+    transform: translateX(-50%) rotate(-36deg);
+    transform-origin: 50% 68%;
+  }
+}
+
+@media (max-width: 360px) {
+  #birthday-section .title .hat-img {
+    left: 68%;
+    top: -125px;
+    width: 85px;
+    transform: translateX(-50%) rotate(-34deg);
+    transform-origin: 50% 70%;
   }
 }
 
