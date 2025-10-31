@@ -843,9 +843,9 @@ body {
 @media (max-width: 658px) {
   #birthday-section .title .hat-img {
     position: absolute;
-    left: 67%;              /* ⬅️ moved slightly right */
-    top: -160px;            /* ⬆️ raised slightly up */
-    width: 98px;            /* keeps proper proportion */
+    left: 70%;              /* 👉 shifted slightly more right */
+    top: -165px;            /* ⬆️ raised a little */
+    width: 96px;            /* balanced size */
     transform: translateX(-50%) rotate(-38deg);
     transform-origin: 50% 65%;
     z-index: 2;
