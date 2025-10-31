@@ -15,6 +15,17 @@
     --color-bg-letter: #fff8e4;
     --color-border: #DACCBF;
 }
+html{
+    height: 100%;
+}
+body {
+    position: relative;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image:linear-gradient(var(--color-pink), var(--color-pink));
+}
 #birthday-section {
     position: relative;
     font-size: 16px;
@@ -29,8 +40,6 @@
     overflow: hidden;
     overflow-x: hidden;
 }
-
-
 #birthday-section #wrapper {
     position: relative;
     background-color: transparent;
@@ -63,21 +72,20 @@
     display: flex;
     padding-top: 3rem;
 }
-
-.content .left, .content .right{
+#birthday-section .content .left, .content .right{
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.content .left{
+#birthday-section .content .left{
     width: 40%;
 }
-.content .right{
+#birthday-section .content .right{
     width: 60%;
 }
-.left .btn{
+#birthday-section .left .btn{
     transform: scale(0);
     animation: scaleCricle 2s 16s forwards ease-in-out;
 }
@@ -111,7 +119,6 @@
     color: #fff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
 #btn__letter:hover i{
     animation: rotateHeart 1s infinite linear;
 }
@@ -126,17 +133,19 @@
         transform: rotate(-12deg);
     }
 }
-.title{
+#birthday-section .title {
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     font-family: "Titan One", sans-serif;
-    font-size: 3rem;
+    font-size: 4.6rem;      /* larger text like original */
+    line-height: 1.05;      /* keeps “Happy” and “Birthday” tight */
+    letter-spacing: 3px;
     flex-direction: column;
     perspective: 1000px;
 }
-.title .happy, .title .birthday{
+#birthday-section .title .happy, .title .birthday{
     position: relative;
     text-shadow: 4px 4px var(--color-black), 
                 -4px 4px var(--color-black), 
@@ -147,14 +156,14 @@
     display: flex;
     justify-content: center;
 }
-.title .happy{
+#birthday-section .title .happy{
     color: var(--color-white);
 }
-.title .happy span, .title .birthday span {
+#birthday-section .title .happy span, .title .birthday span {
     transform: translateY(50px);
     opacity: 0;
     visibility: hidden;
-    animation: txtTranslateY .6s var(--t) ease-in-out forwards;
+    animation: txtTranslateY .5s var(--t) forwards;
 }
 @keyframes txtTranslateY{
     100%{
@@ -163,17 +172,8 @@
         visibility: visible;
     }
 }
-.title .birthday{
+#birthday-section .title .birthday{
     color: var(--color-text-pink);
-}
-
-.title .hat {
-    position: absolute;
-    right: 45px;
-    top: -350px;
-    transform: rotate(-40deg);
-    z-index: 10; /* make it visible above others */
-    animation: topHat 3s 6.8s forwards ease-in-out;
 }
 @keyframes topHat{
     20%, 30%{
@@ -186,7 +186,7 @@
         transform: rotate(0deg);
     }
 }
-#birthday-section .date__of__birth, #birthday-section .name{
+#birthday-section .date__of__birth, #birthday-section .name {
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -196,15 +196,15 @@
     font-family: "Sriracha", cursive;
     
 }
-.date__of__birth{
+#birthday-section .date__of__birth {
     border: 3px solid var(--color-black);
     position: relative;
     transform: translateY(-100px);
-    z-index: -1;
+    z-index: 2;
     opacity: 0;
     visibility: hidden;
     width: 0px;
-    animation: dateOfBirth 5s 9s forwards;
+    /* animation removed – runs only when .show is added */
 }
 @keyframes dateOfBirth{
     20%,40%{
@@ -229,27 +229,20 @@
         height: 50px;
     }
 }
-.name {
+#birthday-section .name {
     position: absolute;
     padding: 0px 40px;
     bottom: -20px;
     border: 3px solid var(--color-black);
-    opacity: 0;
-    animation: fadeName 2s 10s forwards ease-in;
 }
-
-@keyframes fadeName {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.date__of__birth span, .name span{
+#birthday-section .date__of__birth span, .name span{
     font-weight: bold;
     margin: 0px 40px;
 }
-.date__of__birth span{
+#birthday-section .date__of__birth span{
     font-size: 1.2rem;
 }
-.name span{
+#birthday-section .name span{
     font-size: 1.7rem;
 }
 #birthday-section .right .box__account{
@@ -262,7 +255,7 @@
         transform: translateY(0);
     }
 }
-.content .right .image{
+#birthday-section .content .right .image{
     position: relative;
     width: 400px;
     height: 400px;
@@ -272,12 +265,12 @@
     align-items: center;
     border: 6px solid var(--color-black);
 }
-.content .right .image img{
+#birthday-section .content .right .image img{
     width: 100%;
     object-fit: cover;
 
 }
-.cricle{
+#birthday-section .cricle{
     position: absolute;
     top: 20px;
     right: 50px;
@@ -302,7 +295,7 @@
     }
 
 }
-.text__cricle{
+#birthday-section .text__cricle{
     width: 100px;
     height: 100px;
     background-color: var(--color-text-pink);
@@ -318,7 +311,7 @@
         transform: rotate(360deg);
     }
 }
-.text__cricle span{
+#birthday-section .text__cricle span{
     top: 0%;
     left: 50%;
     position: absolute;
@@ -329,12 +322,12 @@
     text-transform: uppercase;
     font-size: 0.7rem;
 }
-.fa-heart{
+#birthday-section .fa-heart{
     color: var(--color-heart);
     filter: drop-shadow(0 0 3px var(--color-heart));
     animation: scaleHeart 1s infinite linear;
 }
-.cricle .fa-heart{
+#birthday-section .cricle .fa-heart{
     position: absolute;
     transform: scale(0.85);
 }
@@ -343,7 +336,7 @@
         transform: scale(1.2);
     }
 }
-.right .balloon_one{
+#birthday-section .right .balloon_one{
     position: absolute;
     top: -70px;
     left: -70px;
@@ -363,7 +356,7 @@
         transform: rotate(-3deg);
     }
 }
-.right .balloon_two{
+#birthday-section .right .balloon_two{
     position: absolute;
     top: 170px;
     right: -65px;
@@ -385,7 +378,6 @@
         transform: rotate(13deg);
     }
 }
-
 #birthday-section .decorate_star{
     position: absolute;
     transform: scale(0);
@@ -432,7 +424,7 @@
         transform: scale(1.1);
     }
 }
-.decorate_bottom{
+#birthday-section .decorate_bottom{
     position: absolute;
     right: 0;
     bottom: -10px;
@@ -465,8 +457,6 @@
     transform: scale(0);
     animation: scaleCricle 3s 15s forwards ease-in-out;
 }
-
-
 #birthday-section .box__letter {
     position: absolute;
     top: 0;
@@ -477,7 +467,7 @@
     z-index: 10;
     display: none;
 }
-.box__letter .letter__border{
+#birthday-section .box__letter .letter__border{
     position: absolute;
     width: 55vw;
     height: 450px;
@@ -490,7 +480,7 @@
     transform: translate(-50%,-50%);
     display: none;
 }
-.letter__border .close{
+#birthday-section .letter__border .close{
     position: absolute;
     right: -10px;
     top: -10px;
@@ -504,24 +494,24 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     cursor: pointer;
 }
-.letter__border .letter{
+#birthday-section .letter__border .letter{
     width: 100%;
     height: 100%;
     background-color: var(--color-bg-letter);
     border-radius: 10px;
     padding-top: 15px;
 }
-.letter__border .letter .title__letter{
+#birthday-section .letter__border .letter .title__letter{
     text-align: center;
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
     font-size: 2.4rem;
 }
-.title__letter .fa-solid{
+#birthday-section .title__letter .fa-solid{
     margin-left: 5px;
     font-size: 1.3rem;
 }
-.letter__border .letter .content__letter{
+#birthday-section .letter__border .letter .content__letter{
     position: relative;
     width: 100%;
     height: 100%;
@@ -529,14 +519,14 @@
     padding-top: 1.5rem;
     padding-bottom: 70px;
 }
-.letter__border .letter .content__letter .left{
+#birthday-section .letter__border .letter .content__letter .left{
     position: relative;
     width: 50%;
     height: 100%;
     padding: 1.7rem;
     border-right: 3px solid var(--color-border);
 }
-.content__letter .left #heart__letter{
+#birthday-section .content__letter .left #heart__letter{
     opacity: 0;
     width: 100%;
 }
@@ -548,11 +538,11 @@
         opacity: 1;
     }
 }
-.content__letter .left .heart{
+#birthday-section .content__letter .left .heart{
     position: absolute;
     opacity: 0;
 }
-.content__letter .left .heart.animation{
+#birthday-section .content__letter .left .heart.animation{
     animation: scaleHeartLetter 1s var(--t) infinite ease-in-out;
 }
 @keyframes scaleHeartLetter{
@@ -594,32 +584,30 @@
     position: relative;
     width: 50%;
 }
-.content__letter .right .love__img{
+#birthday-section .content__letter .right .love__img{
     opacity: 0;
     position: absolute;
     right: 20px;
     top: -100px;
 }
-.love__img.animationOp{
+#birthday-section .love__img.animationOp{
     animation: opacityHeart 1s 1s forwards;
 }
-.content__letter .right .text__letter{
+#birthday-section .content__letter .right .text__letter{
     margin-top: 60px;
     padding: 20px 15px 10px 15px;
     font-family: 'Dancing Script', cursive;
     font-size: 1.3rem;
 }
-.content__letter .right #mewmew{
+#birthday-section .content__letter .right #mewmew{
     position: absolute;
     bottom: 0;
     right: 0;
     opacity: 0;
 }
-#mewmew.animationOp{
+#birthday-section #mewmew.animationOp{
     animation: opacityHeart 1s 1s forwards;
 }
-
-
 #birthday-section #copy {
     position: fixed;
     bottom: 12px;
@@ -627,13 +615,11 @@
     transform: translateX(-50%);
     font-size: 1rem;
 }
-
-#copy a {
+#birthday-section #copy a {
     text-decoration: none;
     color: #191919d7;
 }
-
-#copy p {
+#birthday-section #copy p {
     color: #ff3d5a;
     text-align: center;
     font-weight: 700;
@@ -669,8 +655,9 @@
         display: flex;
         justify-content: center;
         font-family: "Titan One", sans-serif;
-        font-size: 1.5rem;
-        letter-spacing: 8px;
+        font-size: 3.2rem;
+        line-height: 1.05;
+        letter-spacing: 4px;
         flex-direction: column;
         perspective: 1000px;
     }
@@ -706,16 +693,7 @@
         animation: scaleCricle 3s 15s forwards ease-in-out;
     }
 
-    .title .hat {
-        position: absolute;
-        right: -98px;
-        top: -51px !important;
-        transform: rotate(-40deg);
-        z-index: -1;
-        animation: topHat 4s 7s forwards ease;
-    }
-
-    .box__letter .letter__border {
+    #birthday-section .box__letter .letter__border {
         position: absolute;
         width: 90vw;
         height: 315px;
@@ -729,7 +707,7 @@
         display: none;
     }
 
-    .letter__border .letter {
+    #birthday-section .letter__border .letter {
         width: 100%;
         height: 100%;
         background-color: var(--color-bg-letter);
@@ -737,14 +715,14 @@
         padding-top: 15px;
     }
 
-    .letter__border .letter .title__letter {
+    #birthday-section .letter__border .letter .title__letter {
         text-align: center;
         font-family: 'Dancing Script', cursive;
         font-weight: bold;
         font-size: 1.4rem;
     }
 
-    .letter__border .letter .content__letter {
+    #birthday-section .letter__border .letter .content__letter {
         position: relative;
         width: 100%;
         height: 100%;
@@ -753,14 +731,14 @@
         padding-bottom: 70px;
     }
 
-    .content__letter .right .text__letter {
+    #birthday-section .content__letter .right .text__letter {
         margin-top: -14px;
         padding: 20px 15px 10px 15px;
         font-family: 'Dancing Script', cursive;
         font-size: .8rem;
     }
 
-    .content__letter .right .love__img {
+    #birthday-section .content__letter .right .love__img {
         opacity: 0;
         position: absolute;
         right: 126px;
@@ -773,7 +751,7 @@
 
     }
 
-    .content .right .image {
+    #birthday-section .content .right .image {
         position: relative;
         width: 200px;
         height: 200px;
@@ -813,7 +791,6 @@
   opacity: 0;
   animation: none;
 }
-
 #birthday-section.show {
   display: block;
   animation: fadeIn 0.8s ease-in forwards;
@@ -825,21 +802,15 @@
   to { opacity: 1; }
 }
 
-/* make hat appear immediately after section fade */
-#birthday-section.show .title .hat {
-  z-index: 10;
-  animation: topHat 3s 6.8s forwards ease-in-out;
-}
-
 /* make the happy/birthday letters appear smoothly */
 #birthday-section.show .title .happy span,
 #birthday-section.show .title .birthday span {
   animation: txtTranslateY 0.6s var(--t) ease-in-out forwards;
 }
 
-/* show date of birth earlier */
+/* Delay slightly more so date appears after hat drop */
 #birthday-section.show .date__of__birth {
-  animation: dateOfBirth 3s 8.5s forwards;
+  animation: dateOfBirth 3s 9.4s forwards;
 }
 
 /* fade-in Supriya (❤️name❤️) tag faster */
@@ -854,3 +825,21 @@
   animation: opacityHeart 0.6s 0.2s forwards;
   opacity: 1;
 }
+
+/* === Final Hat Animation & Alignment Fix === */
+#birthday-section .title .hat-img {
+  position: absolute;
+  right: 60px;       /* fine-tuned horizontal offset */
+  top: -290px;       /* same height as live version */
+  transform: rotate(-40deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Only drop down after the word animations complete */
+#birthday-section.show .title .hat-img {
+  animation: topHat 2.8s 6.8s forwards ease-in-out;  /* delay matches live */
+}
+
+
+
