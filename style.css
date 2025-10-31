@@ -626,8 +626,6 @@ body {
     cursor: pointer;
 }
 
-
-
 @media screen and (max-width: 658px)   {
 
     #birthday-section .flag__birthday .flag__left {
@@ -845,9 +843,9 @@ body {
 @media (max-width: 658px) {
   #birthday-section .title .hat-img {
     position: absolute;
-    left: 62%;
-    top: -150px;
-    width: 100px;
+    left: 67%;              /* ⬅️ moved slightly right */
+    top: -160px;            /* ⬆️ raised slightly up */
+    width: 98px;            /* keeps proper proportion */
     transform: translateX(-50%) rotate(-38deg);
     transform-origin: 50% 65%;
     z-index: 2;
