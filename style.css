@@ -841,5 +841,14 @@ body {
   animation: topHat 2.8s 6.8s forwards ease-in-out;  /* delay matches live */
 }
 
+@media screen and (max-width: 658px) {
+  #birthday-section .title .hat-img {
+    right: 20px;      /* shift closer to center */
+    top: -180px;      /* move slightly up to rest on text */
+    transform: rotate(-35deg);
+    width: 90px;      /* slightly smaller for mobile */
+  }
+}
+
 
 
