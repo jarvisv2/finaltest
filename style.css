@@ -859,11 +859,13 @@ body {
 
 @media (max-width: 420px) {
   #birthday-section .title .hat-img {
-    left: 66%;
-    top: -135px;
-    width: 92px;
+    left: 70%;               /* moved slightly right for Vivo T2 5G */
+    top: -150px;             /* raised a bit for perfect Y-alignment */
+    width: 95px;             /* balanced size */
     transform: translateX(-50%) rotate(-36deg);
     transform-origin: 50% 68%;
+    z-index: 2;
+    pointer-events: none;
   }
 }
 
